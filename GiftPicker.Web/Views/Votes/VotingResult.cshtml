@@ -1,0 +1,59 @@
+﻿@model List<GiftPicker.Db.VotingResult>
+@using GiftPicker.Db.Models;
+
+@{
+    ViewData["Title"] = "Voting Result";
+
+    var loggedUser = (User)ViewBag.LoggedUser;
+}
+
+<h3>@ViewData["Title"]</h3>
+
+@if(Model?.Any() == null)
+{
+    <div class="alert alert-info" role="alert">No records found.</div>
+
+    return;
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <table class="table table-striped w-auto">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Gift</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var v in Model)
+                {
+                    <tr>
+                        <td>@v.FullName</td>
+                        <td>@v.Gift</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-6">
+        <table class="table table-striped w-auto">
+            <thead>
+                <tr>
+                    <th scope="col">Gift</th>
+                    <th scope="col">Votes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var record in Model.GroupBy(r => r.Gift).OrderByDescending(x => x.Count()))
+                {
+                    <tr>
+                        <td>@(string.IsNullOrEmpty(record.Key) ? "Abstainers" : record.Key)</td>
+                        <td class="text-end">@record.Count()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

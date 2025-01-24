@@ -1,0 +1,27 @@
+﻿@model GiftPicker.Web.ViewModels.VoteCreateModel
+
+@{
+    ViewBag.Title = "Create Vote";
+}
+
+<h3 class="text-center">@ViewBag.Title</h3>
+
+<div class="col-md-4 mx-auto">
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly"></div>
+
+        <input type="hidden" asp-for="UserVotingId" />
+
+        <div class="form-group">
+            <label asp-for="GiftId" class="form-label"></label>
+            <select asp-for="GiftId" asp-items="@(new SelectList(Model.Gifts, "Id", "Name"))" class="form-select">
+                <option value="">-- Please Select --</option>
+            </select>
+            <span asp-validation-for="GiftId"></span>
+        </div>
+
+        <div class="col-md-12 text-center">
+            <input type="submit" value="Create" class="btn btn-info" />
+        </div>
+    </form>
+</div>

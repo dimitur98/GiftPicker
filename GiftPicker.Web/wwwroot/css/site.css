@@ -17,9 +17,7 @@ html {
   min-height: 100%;
 }
 
-body {
-  margin-bottom: 60px;
-}
+
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
   color: var(--bs-secondary-color);
@@ -28,4 +26,46 @@ body {
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
+}
+
+.maxw-100 {
+    max-width: 100%;
+}
+
+#page{
+    height: calc(100vh - 113px) !important;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+#header .navbar.bg-white {
+    background: linear-gradient(to right,#fbc57f,#4bb4ea);
+    background-color: #25b9b8 !important;
+}
+
+.navbar .navbar-brand ,
+.navbar-light .navbar-nav .nav-link{
+    color: #ffffff;
+}
+
+a {
+    color:#f9c47f;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #4cb4e9;
+    border-color: #4cb4e9;
+}
+
+    .btn-info:hover {
+        color: #fff;
+        background-color: #1a6c95;
+        border-color: #1a6c95;
+    }
+
+.validation-summary-errors, .field-validation-error {
+    color: #c93333;
 }

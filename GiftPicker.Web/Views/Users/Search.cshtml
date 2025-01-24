@@ -1,0 +1,46 @@
+﻿@model GiftPicker.Web.ViewModels.UsersSearchModel
+@using GiftPicker.Db.Models;
+
+@{
+    ViewData["Title"] = "Users";
+
+    var loggedUser = (User)ViewBag.LoggedUser;
+}
+
+<h3>@ViewData["Title"] (@Model.Response.TotalRecords)</h3>
+
+@if (Model.Response.Records?.Any() == null)
+{
+    <div class="alert alert-info" role="alert">No records found.</div>
+
+    return;
+}
+
+<table class="table table-striped w-auto">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Username</th>
+            <th scope="col">Name</th>
+            <th scope="col">Birthday</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model.Response.Records)
+        {
+            <tr>
+                <td>@u.Id</td>
+                <td>@u.Username</td>
+                <td>@u.FullName</td>
+                <td>@u.Birthday.ToString("yyyy-MM-dd")</td>
+                <td class="text-nowrap">
+                    @if (u.Id != loggedUser.Id)
+                    {
+                        <a asp-action="Create" asp-controller="UserVotings" asp-route-userId="@u.Id" title="Create voting" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-square-poll-vertical"></i></a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

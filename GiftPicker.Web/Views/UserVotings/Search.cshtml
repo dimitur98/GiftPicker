@@ -1,0 +1,80 @@
+﻿@model GiftPicker.Web.ViewModels.UserVotingSearchModel
+@using GiftPicker.Db.Models;
+
+@{
+    ViewData["Title"] = "User Votings";
+
+    var loggedUser = (User)ViewBag.LoggedUser;
+}
+
+<h3>@ViewData["Title"] (@Model.Response.TotalRecords)</h3>
+
+<a asp-action="Create" class="btn btn-info mt-3">Create User Voting</a>
+
+@if (Model.Response.Records?.Any() == null)
+{
+    <div class="alert alert-info" role="alert">No records found.</div>
+
+    return;
+}
+
+<partial name="_AlertPartial" />
+
+<table class="table table-striped w-auto">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+
+            <th scope="col">Name</th>
+            <th scope="col">Birthday</th>
+            <th scope="col">Creator</th>
+            <th scope="col">Year</th>
+            <th scope="col">Active</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var uv in Model.Response.Records)
+        {
+            <tr>
+                <td>@uv.Id</td>
+                <td>@uv.User.FullName</td>
+                <td>@uv.User.Birthday.ToString("yyyy-MM-dd")</td>
+                <td>@uv.Creator.FullName</td>
+                <td>@uv.Year</td>
+                <td class="text-center">
+                    @if (uv.IsActive)
+                    {
+                        <i class="far fa-check-circle text-success"></i>
+                    }
+                    else
+                    {
+                        <i class="far fa-circle text-danger"></i>
+                    }
+                </td>
+                <td class="text-nowrap">
+                    @if (!uv.IsActive)
+                    {
+                        <a asp-action="VotingResult" asp-controller="Votes" asp-route-userVotingId="@uv.Id" title="Open votes" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    }
+                    else
+                    {
+                        @if (Model.VotedUserVotingIds.Contains(uv.Id))
+                        {
+                            <a asp-action="Details" asp-controller="Votes" asp-route-userVotingId="@uv.Id" title="Check vote" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-eye"></i></a>
+                        }
+                        else
+                        {
+                            <a asp-action="Create" asp-controller="Votes" asp-route-userVotingId="@uv.Id" title="Vote" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-gift"></i></a>
+                        }
+                    }
+
+                    @if(loggedUser.Id == uv.CreatorId && uv.IsActive)
+                    {
+                        <a asp-action="StopVoting" asp-route-id="@uv.Id" title="Stop voting" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-stop text-danger"></i></a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

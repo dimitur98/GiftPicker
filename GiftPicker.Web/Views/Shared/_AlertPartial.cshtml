@@ -1,0 +1,12 @@
+﻿@using GiftPicker.Web.Models.Enums;
+
+@{
+    AlertTypes? type = TempData.ContainsKey("AlertType") ? (AlertTypes)TempData["AlertType"] : null;
+}
+
+@if (TempData["ShowAlert"] != null)
+{
+    <div class="alert alert-@(type == null ? "success" : type.ToString().ToLower()) mt-3" role="alert">
+        @TempData["ShowAlert"]
+    </div>
+}

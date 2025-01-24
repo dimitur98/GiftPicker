@@ -1,0 +1,21 @@
+﻿@model int?
+@using GiftPicker.Web.Resources
+
+@{
+    ViewBag.Title = "Error";
+
+    if (Model.HasValue)
+    {
+        switch (Model)
+        {
+            case 403:
+            case 404:
+                <div class="text-center"><img src="~/img/http-status-codes/@(Model.Value).jpg" class="maxw-100" /> </div>
+                break;
+
+            default:
+                <div role="alert" class="alert alert-danger">@Global.GeneralError</div>
+                break;
+        }
+    }
+}

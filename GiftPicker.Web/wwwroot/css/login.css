@@ -1,0 +1,42 @@
+﻿body {
+    background-image: url('/img/login.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+#header .navbar.bg-white {
+    background: none;
+    background-color: transparent !important;
+    border-bottom: 0 !important;
+}
+
+#page {
+    height: calc(100vh - 144px) !important;
+}
+
+#login {
+    max-width: 330px;
+}
+
+#login .panel-body {
+    background-color: #fff;
+    padding: 45px 30px;
+    border-radius: 6px;
+}
+
+.btn-primary {
+    color: #fff;
+    border-style: none;
+    background: linear-gradient(to left,#fbc57f,#4bb4ea);
+    -webkit-transition: all .4s;
+    -o-transition: all .4s;
+    -moz-transition: all .4s;
+    transition: all .4s;
+}
+
+    .btn-primary:hover
+    {
+        border-style: none;
+        background: linear-gradient(to right,#fbc57f,#4bb4ea);
+    }
