@@ -1,6 +1,6 @@
 ﻿using DapperMySqlMapper.Attributes;
 
-namespace GiftPicker.Db
+namespace GiftPicker.Db.DTOs.Votes
 {
     public class VotingResult
     {

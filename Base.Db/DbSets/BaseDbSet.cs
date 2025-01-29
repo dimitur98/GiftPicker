@@ -57,7 +57,7 @@ namespace Base.Db.DbSets
             return _db.Mapper.Query<T>(sql, new { ids }).ToList();
         }
 
-        protected virtual T GetFirstByField<TValue>(string field, TValue value, IEnumerable<string> selectFields = null)
+        protected virtual T GetFirstByField<TValue>(string field, TValue value)
         {
             var sql = @$"SELECT *
                 FROM {_table}

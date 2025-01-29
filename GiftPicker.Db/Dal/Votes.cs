@@ -1,6 +1,7 @@
 ﻿using Base.Db;
 using Base.Db.DbSets;
 using Base.Db.SqlQueryBuilder;
+using GiftPicker.Db.DTOs.Votes;
 using GiftPicker.Db.Models;
 using GiftPicker.Db.Models.Search.Votes;
 
