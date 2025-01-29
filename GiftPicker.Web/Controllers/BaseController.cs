@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 namespace GiftPicker.Web.Controllers
 {
     [Authorize]
-    public class BaseController : Controller
+    public abstract class BaseController : Controller
     {
         private User _loggedUser;
 
